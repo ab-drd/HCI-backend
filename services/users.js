@@ -1,5 +1,4 @@
-import { createHash } from 'node:crypto';
-
+const crypto = require('crypto');
 const db = require('./db');
 const helper = require('../helper');
 const config = require('../config');
@@ -52,11 +51,36 @@ async function createNew(newUser) {
     return returnValue;
 }
 
-async function logIn() {
-    
+async function logIn(userInfo) {
+    const result = await db.query(
+        `SELECT * FROM users WHERE username = ${userInfo.username};`
+    );
+
+    const foundUser = helper.emptyOrRows(result);
+
+    if (!foundUser) {
+        return {
+            success: false,
+            message: 'Username does not exist'
+        }
+    }
+
+    if (foundUser[0].password_hash.trim() == userInfo.passwordHash) {
+        return {
+            success: true,
+            message: 'Successfully logged in!'
+        };
+    }
+    else {
+        return {
+            success: false,
+            message: 'Incorrect password'
+        };
+    }
 }
 
 module.exports = {
     getAll,
-    createNew
+    createNew,
+    logIn
 }
