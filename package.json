@@ -1,0 +1,15 @@
+{
+  "name": "hci-api",
+  "version": "0.1",
+  "description": "Simple API for HCI project purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
