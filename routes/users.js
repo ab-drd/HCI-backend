@@ -16,7 +16,7 @@ router.post('/', async function(req, res, next) {
     try {
         res.json(await users.createNew(req.body));
     } catch (err) {
-        console.error(`Error while creating new user`, err.message);
+        console.error(`Error while creating new user: `, err.message);
         next(err);
     }
 });
