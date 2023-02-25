@@ -4,6 +4,7 @@ const comments = require('../services/comments');
 
 router.get('/load', async function(req, res, next) {
     try {
+        res.set('Access-Control-Allow-Origin', '*');
         res.json(await comments.loadComments(req.params.slug));
     } catch (err) {
         console.error(`Error while getting comments for post: `, err.message);
@@ -13,6 +14,7 @@ router.get('/load', async function(req, res, next) {
 
 router.post('/create', async function(req, res, next) {
     try {
+        res.set('Access-Control-Allow-Origin', '*');
         res.json(await comments.insertComment(req.body));
     } catch (err) {
         console.error(`Error while creating comment: `, err.message);
