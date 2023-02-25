@@ -5,9 +5,8 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors({
-  origin: '*'
-}))
+app.use(cors());
+app.options('*', cors()) // include before other routes
 const port = 3000;
 const usersRouter = require("./routes/users");
 const commentsRouter = require("./routes/comments");
