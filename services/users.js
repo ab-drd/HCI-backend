@@ -53,7 +53,7 @@ async function createNew(newUser) {
 
 async function logIn(userInfo) {
     const result = await db.query(
-        `SELECT * FROM users WHERE username = ${userInfo.username};`
+        `SELECT * FROM users WHERE username = '${userInfo.username}';`
     );
 
     const foundUser = helper.emptyOrRows(result);
