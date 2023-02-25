@@ -4,7 +4,7 @@ const comments = require('../services/comments');
 
 router.get('/load', async function(req, res, next) {
     try {
-        res.json(await comments.loadComments(req.params.slug));
+        res.json(await comments.loadComments(req.query.slug));
     } catch (err) {
         console.error(`Error while getting comments for post: `, err.message);
         next(err);
