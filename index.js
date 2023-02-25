@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({
-  origin: ['localhost:3000', 'https://hclhr.vercel.app/']
+  origin: '*'
 }))
 const port = 3000;
 const usersRouter = require("./routes/users");
