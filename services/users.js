@@ -41,7 +41,7 @@ async function createNew(newUser) {
     let returnValue = {
         success: false,
         message: 'Error creating new user'
-    }
+    };
 
     if (result.affectedRows) {
         returnValue.success = true;

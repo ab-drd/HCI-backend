@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const usersRouter = require("./routes/users");
+const commentsRouter = require("./routes/comments");
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 app.use("/users", usersRouter);
+app.use("/comments", commentsRouter);
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     console.error(err.message, err.stack);
