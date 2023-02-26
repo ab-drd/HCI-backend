@@ -4,7 +4,7 @@ const config = require('../config');
 
 async function insertComment(info) {
     const existing = await db.query(
-        `SELECT id FROM users WHERE username = ${newUser.username};`
+        `SELECT id FROM users WHERE username = ${info.username};`
     );
 
     const existingUser = helper.emptyOrRows(existing);
@@ -16,7 +16,7 @@ async function insertComment(info) {
 
     if (existingUser) {
         const result = await db.query(
-            `INSERT INTO comment (slug, content, user_id) VALUES (${info.slug}, ${info.content}, ${existingUser.id});`
+            `INSERT INTO comment (slug, content, user_id) VALUES (${info.slug}, ${info.content}, ${existingUser[0].id});`
         );
 
         if (result.affectedRows) {
