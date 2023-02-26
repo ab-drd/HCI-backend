@@ -58,7 +58,7 @@ async function logIn(userInfo) {
 
     const foundUser = helper.emptyOrRows(result);
 
-    if (!foundUser) {
+    if (foundUser == []) {
         return {
             success: false,
             message: 'Username does not exist'
