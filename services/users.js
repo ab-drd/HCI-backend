@@ -61,7 +61,7 @@ async function logIn(userInfo) {
     if (!foundUser.length) {
         return {
             success: false,
-            message: 'Username does not exist'
+            message: 'Incorrect username or password'
         }
     }
 
@@ -74,7 +74,7 @@ async function logIn(userInfo) {
     else {
         return {
             success: false,
-            message: 'Incorrect password'
+            message: 'Incorrect username or password'
         };
     }
 }
