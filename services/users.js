@@ -35,7 +35,7 @@ async function createNew(newUser) {
     const result = await db.query(
         `INSERT INTO users (username, password_hash)
         VALUES
-        (${newUser.username}, ${newUser.passwordHash});`
+        ('${newUser.username}', '${newUser.passwordHash}');`
     );
 
     let returnValue = {
