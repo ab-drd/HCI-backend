@@ -58,7 +58,7 @@ async function logIn(userInfo) {
 
     const foundUser = helper.emptyOrRows(result);
         
-    /*if (foundUser == []) {
+    if (!foundUser.length) {
         return {
             success: false,
             message: 'Username does not exist'
@@ -76,9 +76,7 @@ async function logIn(userInfo) {
             success: false,
             message: 'Incorrect password'
         };
-    }*/
-
-    return foundUser;
+    }
 }
 
 module.exports = {
