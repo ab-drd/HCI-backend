@@ -20,12 +20,12 @@ async function getAll(page = 1) {
 
 async function createNew(newUser) {
     const existing = await db.query(
-        `SELECT * FROM users WHERE username = ${newUser.username};`
+        `SELECT * FROM users WHERE username = '${newUser.username}';`
     );
 
     const existingUser = helper.emptyOrRows(existing);
 
-    if (existingUser) {
+    if (existingUser.length) {
         return {
             success: false,
             message: 'Username already taken!'
