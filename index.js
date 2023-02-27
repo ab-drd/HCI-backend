@@ -2,6 +2,11 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const https = require('https');
+const http = require('http');
+
+const fs = require('fs');
+
 const app = express();
 app.use(cors());
 app.options('*', cors()) // include before other routes
@@ -34,6 +39,17 @@ app.use((err, req, res, next) => {
     res.status(statusCode).json({ message: err.message });
     return;
 });
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer({
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+}, app);
+
+httpServer.listen(80, () => {
+  console.log('HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+  console.log('HTTPS Server running on port 443');
 });
